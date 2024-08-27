@@ -1,0 +1,148 @@
+@tailwind components;
+
+@layer components {
+  .typo-topline {
+    @apply text-base font-topline tracking-widest uppercase font-normal;
+  }
+
+  @screen medium {
+    .typo-topline {
+      @apply text-2xl;
+    }
+  }
+
+  /* Heading */
+  .typo-h1 {
+    @apply font-heading text-3xl font-medium;
+  }
+  @screen medium {
+    .typo-h1 {
+      @apply text-6xl;
+    }
+  }
+
+  .typo-h2 {
+    @apply font-heading text-2xl font-medium;
+  }
+  @screen medium {
+    .typo-h2 {
+      @apply text-4xl;
+    }
+  }
+
+  .typo-h3 {
+    @apply font-heading text-base font-medium;
+  }
+  @screen medium {
+    .typo-h3 {
+      @apply text-3xl;
+    }
+  }
+
+  .typo-h4 {
+    @apply font-heading text-lg font-medium;
+  }
+  @screen medium {
+    .typo-h4 {
+      @apply text-2xl;
+    }
+  }
+
+  .typo-h5 {
+    @apply font-heading text-base font-medium;
+  }
+  @screen medium {
+    .typo-h5 {
+      @apply text-xl;
+    }
+  }
+
+  /* Paragraph */
+  .typo-copy-intro {
+    @apply font-copy text-base font-normal leading-6.5;
+  }
+  @screen medium {
+    .typo-copy-intro {
+      @apply text-xl leading-8;
+    }
+  }
+
+  .typo-copy-normal {
+    @apply font-copy text-sm font-normal leading-6;
+  }
+  @screen medium {
+    .typo-copy-normal {
+      @apply text-base leading-6.5;
+    }
+  }
+
+  .typo-copy-small {
+    @apply font-copy text-xs font-normal leading-5;
+  }
+  @screen medium {
+    .typo-copy-small {
+      @apply text-sm leading-6;
+    }
+  }
+
+  .typo-copy-small-bold {
+    @apply font-copy text-sm text-gray-700 font-semibold tracking-wider;
+  }
+
+  @screen medium {
+    .typo-copy-small-bold {
+      @apply text-base;
+    }
+  }
+
+  /* Other */
+  .typo-quote {
+    @apply font-quote text-base text-gray-700 tracking-wide;
+  }
+
+  @screen medium {
+    .typo-quote {
+      @apply text-xl;
+    }
+  }
+
+  .typo-form-label {
+    @apply font-copy text-base font-medium;
+  }
+
+  @screen medium {
+    .typo-form-label {
+      @apply text-lg;
+    }
+  }
+
+  .typo-form-value {
+    @apply font-copy text-base;
+  }
+
+  @screen medium {
+    .typo-form-value {
+      @apply text-lg;
+    }
+  }
+
+  .typo-form-hint {
+    @apply text-xs text-gray-600;
+  }
+
+  @screen medium {
+    .typo-form-hint {
+      @apply text-sm;
+    }
+  }
+
+  .typo-header {
+    @apply text-base font-header uppercase tracking-widest;
+  }
+
+  @screen medium {
+    .typo-header {
+      @apply text-lg;
+    }
+  }
+}

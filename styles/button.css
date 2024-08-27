@@ -1,0 +1,63 @@
+@tailwind components;
+
+@layer components {
+  /* Button Sizes */
+  .btn-small {
+    @apply text-[14px];
+  }
+  .btn-medium {
+    @apply text-[16px];
+  }
+  .btn-large {
+    @apply text-[18px];
+  }
+
+  .btn-spacing-small {
+    @apply px-4 py-3;
+  }
+
+  .btn-spacing-medium {
+    @apply px-6 py-4;
+  }
+
+  .btn-spacing-large {
+    @apply px-8 py-5;
+  }
+
+  .btn {
+    @apply flex items-center justify-center focus:outline-none rounded-full;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    @apply bg-white text-green-800 border border-green-800;
+  }
+  .btn-primary:hover {
+    @apply bg-green-800 text-white;
+  }
+  .btn-primary:disabled {
+    @apply bg-gray-200 text-gray-400;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply bg-green-800 text-white;
+  }
+  .btn-secondary:hover {
+    @apply bg-white text-green-800;
+  }
+  .btn-secondary:disabled {
+    @apply bg-gray-200 text-gray-400;
+  }
+
+  /* Tertiary Button */
+  .btn-tertiary {
+    @apply bg-white text-green-900;
+  }
+  .btn-tertiary:hover {
+    @apply bg-gray-100;
+  }
+  .btn-tertiary:disabled {
+    @apply bg-gray-200 text-gray-400;
+  }
+}
