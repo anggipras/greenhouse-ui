@@ -21,9 +21,12 @@ const LoginDialog = (props: LoginDialogProps) => {
   const { openDialog, setLoginDialog, setCandidateDt } = useData();
 
   const handleChange = (event: SelectChangeEvent) => {
-    setUserdata(event.target.value as unknown as CandidateRes);
-    const vl = event.target.value as unknown as CandidateRes;
-    setUserdataLabel(`${vl?.first_name} ${vl?.last_name} - ${vl?.id}`);
+    const filteredUserData =
+      data.find((val) => val.id.toString() === event.target.value) || null;
+    setUserdata(filteredUserData);
+    setUserdataLabel(
+      `${filteredUserData?.first_name} ${filteredUserData?.last_name} - ${filteredUserData?.id}`
+    );
   };
 
   const handelClose = () => {
@@ -72,7 +75,7 @@ const LoginDialog = (props: LoginDialogProps) => {
               onChange={handleChange}
             >
               {data.map((dt) => (
-                <MenuItem key={dt.id} value={dt}>
+                <MenuItem key={dt.id} value={dt.id}>
                   {dt.first_name} {dt.last_name} - {dt.id}
                 </MenuItem>
               ))}
