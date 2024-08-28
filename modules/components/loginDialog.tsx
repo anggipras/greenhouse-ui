@@ -17,16 +17,11 @@ export interface LoginDialogProps {
 const LoginDialog = (props: LoginDialogProps) => {
   const { data } = props;
   const [userData, setUserdata] = useState<CandidateRes | null>(null);
-  const [userDataLabel, setUserdataLabel] = useState<string>();
+  const [userDataLabel, setUserdataLabel] = useState<string>("");
   const { openDialog, setLoginDialog, setCandidateDt } = useData();
 
-  const handleChange = (event: SelectChangeEvent) => {
-    const filteredUserData =
-      data.find((val) => val.id.toString() === event.target.value) || null;
-    setUserdata(filteredUserData);
-    setUserdataLabel(
-      `${filteredUserData?.first_name} ${filteredUserData?.last_name} - ${filteredUserData?.id}`
-    );
+  const handleSelectChange = (dt: CandidateRes) => {
+    setUserdata(dt);
   };
 
   const handelClose = () => {
@@ -37,6 +32,10 @@ const LoginDialog = (props: LoginDialogProps) => {
     localStorage.setItem("USER_DETAIL", JSON.stringify(userData));
     setLoginDialog(false);
     setCandidateDt(userData);
+  };
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setUserdataLabel(event.target.value);
   };
 
   return (
@@ -68,14 +67,17 @@ const LoginDialog = (props: LoginDialogProps) => {
               Choose your user
             </InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
               value={userDataLabel}
+              defaultValue=""
               label="Choose your user"
               onChange={handleChange}
             >
               {data.map((dt) => (
-                <MenuItem key={dt.id} value={dt.id}>
+                <MenuItem
+                  key={dt.id}
+                  value={dt.id}
+                  onClick={() => handleSelectChange(dt)}
+                >
                   {dt.first_name} {dt.last_name} - {dt.id}
                 </MenuItem>
               ))}
