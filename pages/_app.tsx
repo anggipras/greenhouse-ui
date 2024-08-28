@@ -1,6 +1,7 @@
 import "styles/globals.css";
 import type { AppProps } from "next/app";
 import RootLayout from "@/modules/layout";
+import { DataProvider } from "@/lib/hooks/use-data-context";
 
 // Define an interface for components that have a getLayout property
 interface ComponentWithLayout {
@@ -14,9 +15,11 @@ type ExtendedAppProps = AppProps & {
 
 const MyApp = ({ Component, pageProps }: ExtendedAppProps) => {
   return (
-    <RootLayout>
-      <Component {...pageProps} />;
-    </RootLayout>
+    <DataProvider>
+      <RootLayout>
+        <Component {...pageProps} />;
+      </RootLayout>
+    </DataProvider>
   );
 };
 

@@ -72,21 +72,20 @@ const CandidateAppCard = ({
   return (
     <div
       className={clsx(
-        "cursor-pointer hover:shadow-md flex flex-col justify-between items-center gap-6 medium:gap-0 p-6 medium:px-10 medium:py-6 rounded-3xl w-full opacity-0 translate-x-[1rem]",
-        compFlex,
-        data.status === "rejected" ? "bg-red-300" : "bg-green-300"
+        "cursor-pointer bg-gray-50 hover:shadow-xl flex flex-col border justify-between items-center gap-6 medium:gap-0 p-6 medium:px-10 medium:py-6 rounded-3xl w-full opacity-0 translate-x-[1rem]",
+        compFlex
       )}
       ref={cardRef}
     >
       <div className="w-full">
-        <div className="flex justify-between items-center">
-          <div className="typo-h4">ID: {data.candidate_id}</div>
-          <div className="typo-h6 shadow-md bg-gray-300 p-2 rounded-md">
-            {data.jobs[0]?.name}
-          </div>
-        </div>
+        <div className="typo-h2 rounded-sm w-fit">{data.jobs[0]?.name}</div>
         <div className="flex gap-6 items-center mt-2">
-          <div className="flex gap-1 items-center">
+          <div
+            className={clsx(
+              "flex gap-1 items-center p-2 rounded-md",
+              data.status === "rejected" ? "bg-red-300" : "bg-green-300"
+            )}
+          >
             <Autorenew />
             <div>{data.status}</div>
           </div>
@@ -97,7 +96,7 @@ const CandidateAppCard = ({
         </div>
         <hr className="w-full my-2 bg-black h-0.5 mt-8" />
         <div className="typo-copy-normal text-gray-700">
-          {convertISOStringToCustomFormat(data.applied_at)}
+          Applied Date: {convertISOStringToCustomFormat(data.applied_at)}
         </div>
       </div>
     </div>

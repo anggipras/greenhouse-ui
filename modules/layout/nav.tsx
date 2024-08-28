@@ -1,10 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useData } from "@/lib/hooks/use-data-context";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 
 const NavBar = () => {
   const router = useRouter();
+  const { setLoginDialog, candidateRes, setCandidateDt } = useData();
+
+  useEffect(() => {
+    setCandidateDt(
+      localStorage.getItem("USER_DETAIL")
+        ? JSON.parse(localStorage.getItem("USER_DETAIL") || "")
+        : null
+    );
+  }, []);
+
+  const removeUserDetail = () => {
+    localStorage.removeItem("USER_DETAIL");
+    setCandidateDt(null);
+    router.push("/");
+  };
+
   return (
     <div className="sticky top-0 z-20 bg-green-50">
       <div className="mx-auto max-w-desktop w-full">
@@ -21,7 +39,7 @@ const NavBar = () => {
               />
             </div>
           </Link>
-          <div className="hidden medium:flex">
+          <div className="flex items-center">
             <div className="relative inline-block">
               <div className="flex items-center cursor-pointer text-gray-700 p-2.5">
                 <div
@@ -31,23 +49,51 @@ const NavBar = () => {
                     void router.push("/jobs");
                   }}
                 >
-                  Jobs
+                  Jobs Search
                 </div>
               </div>
             </div>
-            <div className="relative inline-block">
-              <div className="flex items-center cursor-pointer text-gray-700 p-2.5">
-                <div
-                  aria-hidden="true"
-                  className="text-green-950 text-lg"
-                  onClick={() => {
-                    void router.push("/candidates");
-                  }}
-                >
-                  Applications
+            {candidateRes ? (
+              <>
+                <div className="relative inline-block">
+                  <div className="flex items-center cursor-pointer text-gray-700 p-2.5">
+                    <div
+                      aria-hidden="true"
+                      className="text-green-950 text-lg"
+                      onClick={() => {
+                        void router.push("/candidates");
+                      }}
+                    >
+                      My Applications
+                    </div>
+                  </div>
+                </div>
+                <div className="relative inline-block">
+                  <div className="flex items-center cursor-pointer p-2.5 gap-2">
+                    <div aria-hidden="true" className="text-green-700 text-lg">
+                      Hi, {candidateRes.first_name} {candidateRes.last_name}
+                    </div>
+                    <div
+                      className="bg-orange-200 p-2 rounded-md font-bold"
+                      onClick={() => removeUserDetail()}
+                    >
+                      Sign Out
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="relative inline-block">
+                <div className="flex items-center cursor-pointer p-2.5 gap-2">
+                  <div
+                    className="bg-orange-200 p-2 rounded-md font-bold"
+                    onClick={() => setLoginDialog(true)}
+                  >
+                    Sign In
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

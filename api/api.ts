@@ -15,6 +15,9 @@ const API = {
     appSubmit(candId: number) {
       return url(`/v1/candidates/${candId}/applications`);
     },
+    get candidatesList() {
+      return url("/v1/candidates");
+    },
   },
 };
 
